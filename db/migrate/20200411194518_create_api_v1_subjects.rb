@@ -4,9 +4,6 @@ class CreateApiV1Subjects < ActiveRecord::Migration[6.0]
       t.string :categories
       t.string :title
       t.text :description
-      t.string :git
-      t.string :add
-      t.string :.
 
       t.timestamps
     end
