@@ -6,7 +6,7 @@ Standardized education approaches are antiquated and ineffective. They should be
 
 
 
-Things you may want to cover:
+Build Info: 
 
 * Ruby version: 2.6.1p33
 * Rails version: 6.0.2.2
