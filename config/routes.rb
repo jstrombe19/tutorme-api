@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :tutor_subjects
+    end
+  end
+  namespace :api do
+    namespace :v1 do
       resources :subjects
     end
   end

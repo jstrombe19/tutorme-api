@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_192235) do
+ActiveRecord::Schema.define(version: 2020_04_11_195250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2020_04_11_192235) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "api_v1_subjects", force: :cascade do |t|
+    t.string "categories"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "api_v1_tutor_subjects", force: :cascade do |t|
+    t.integer "tutor_id", null: false
+    t.bigint "api_v1_subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["api_v1_subject_id"], name: "index_api_v1_tutor_subjects_on_api_v1_subject_id"
+  end
+
   create_table "api_v1_users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -39,4 +55,6 @@ ActiveRecord::Schema.define(version: 2020_04_11_192235) do
 
   add_foreign_key "api_v1_appointments", "api_v1_users", column: "student_id"
   add_foreign_key "api_v1_appointments", "api_v1_users", column: "tutor_id"
+  add_foreign_key "api_v1_tutor_subjects", "api_v1_subjects"
+  add_foreign_key "api_v1_tutor_subjects", "api_v1_users", column: "tutor_id"
 end
