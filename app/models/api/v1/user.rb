@@ -3,9 +3,10 @@ class Api::V1::User < ApplicationRecord
 
   has_many :appointments, foreign_key: :student_id, dependent: :destroy
   has_many :tutors, through: :appointments 
-  has_many :student_appointments, foreign_key: :tutor_id, dependent: :destroy 
+  has_many :student_appointments, foreign_key: :tutor_id, class_name: "Appointment", dependent: :destroy 
   has_many :students, through: :student_appointments
   has_many :tutor_subjects, foreign_key: :tutor_id, dependent: :destroy 
   has_many :subjects, through: :tutor_subjects
 
+  validates :username, uniqueness: {message: "%{attribute}s must be unique and %{value} has already been taken."}
 end
